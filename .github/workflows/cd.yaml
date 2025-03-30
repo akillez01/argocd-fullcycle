@@ -35,14 +35,15 @@ jobs:
       - name: update k8s
         run: |
           cd k8s
-          kustomize edit set image achillessdk/argocd-fullcycle:${{ github.sha }}
+          kustomize edit set image goapp=achillessdk/argocd-fullcycle:${{ github.sha }}
           cat kustomization.yaml
 
-      - name: commit
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "Deploy Action"
-          git config -am "change image tag"
+          - name: commit
+          run: |
+            git config --local user.email "action@github.com"
+            git config --local user.name "Deploy Action"
+            git add k8s/kustomization.yaml
+            git commit -m "change image tag to ${{ github.sha }}"
 
       - name: push
         uses: ad-m/github-push-action@master
