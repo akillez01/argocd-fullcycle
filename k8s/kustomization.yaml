@@ -8,5 +8,5 @@ namespace: goapp
 
 images:
 - name: goapp
-  newName: goapp
-  newTag: v1
+  newName: achillessdk/argocd-fullcycle
+  newTag: ea2123810585b3485a2674ab3a44dc31f232d932
